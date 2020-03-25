@@ -17,12 +17,11 @@ http.interceptors.request.use(function (config) {
   });
 function fn() {
     console.log('haha')
-<<<<<<< HEAD
+}function aa() {
+    console.log('分支添加');
 }
-function gongju() {
-    console.log('工具函数')
-=======
->>>>>>> addfz
+function as() {
+    console.log('heih')
 }
 http.interceptors.response.use(function (response) {
         return response;
