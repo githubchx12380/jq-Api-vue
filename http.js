@@ -15,14 +15,7 @@ http.interceptors.request.use(function (config) {
    
     return Promise.reject(error);
   });
-function fn() {
-    console.log('haha')
-}function aa() {
-    console.log('分支添加');
-}
-function as() {
-    console.log('heih')
-}
+
 http.interceptors.response.use(function (response) {
         return response;
     },  (error) => {
