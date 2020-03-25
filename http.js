@@ -17,9 +17,12 @@ http.interceptors.request.use(function (config) {
   });
 function fn() {
     console.log('haha')
+<<<<<<< HEAD
 }
 function gongju() {
     console.log('工具函数')
+=======
+>>>>>>> addfz
 }
 http.interceptors.response.use(function (response) {
         return response;
