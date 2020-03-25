@@ -15,11 +15,12 @@ http.interceptors.request.use(function (config) {
    
     return Promise.reject(error);
   });
-function cc() {
-    console.log(11);
-    
+function fn() {
+    console.log('haha')
 }
-
+function gongju() {
+    console.log('工具函数')
+}
 http.interceptors.response.use(function (response) {
         return response;
     },  (error) => {
