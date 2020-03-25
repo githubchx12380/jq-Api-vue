@@ -15,7 +15,10 @@ http.interceptors.request.use(function (config) {
    
     return Promise.reject(error);
   });
- 
+function cc() {
+    console.log(11);
+    
+}
 
 http.interceptors.response.use(function (response) {
         return response;

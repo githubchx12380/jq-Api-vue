@@ -1,5 +1,5 @@
 技术栈
-前端：vue + vuex + webpack + element
+前端：vue全家桶 + element
 
 后端：express mysql
 
