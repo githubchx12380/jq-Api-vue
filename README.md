@@ -1,17 +1,16 @@
-技术栈
-前端：vue全家桶 + element
+# vue-express-mysql-element admin project
 
-后端：express mysql
+#### 介绍
+关于软件分享,活动线报,以及学习资源的后台管理系统,使用vue/cli进行整体项目的搭建 页面结构主要为element 前端管理系统请访问 https://gitee.com/chen_hai_xiang/ajax-art-template-jQuery-web-project 技术栈为express + mysql + vue + element
 
 
-前端运行
+#### 使用说明
 
-cd admin
-npm install
-npm run serve
+1.  cd admin
+2.  npm install
+3.  npm run serve
+4.  cd serve
+5.  npm install
+6.  npm run serve
 
-后端运行
 
-cd admin/serve
-npm install
-npm run serve
