@@ -23,7 +23,8 @@ http.interceptors.response.use(function (response) {
             alertttt('')
         }
         catch(err){
-            throw '喵的,账号密码输错了'
+            console.log(err);
+            
         }
         if(error.response.data.code === 301){
             vue.prototype.$message({

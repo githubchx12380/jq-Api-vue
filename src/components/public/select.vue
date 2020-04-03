@@ -1,8 +1,9 @@
 <template>
     <div class="selectbox">
-        选择分类:
-       <el-select v-model="selectId._id" @change="categoryData" placeholder="请选择">
+        分类:
+       <el-select v-model="selectId._id" @change="categoryData" placeholder="请选择" :clearable="true">
         <el-option
+          
           v-for="(item,index) in select"
           :key="index"
           :label="item.title"
@@ -24,14 +25,14 @@ export default {
         }
     },
     methods:{
+        
         categoryData() {
             this.$emit('selectIdfilter',this.selectId._id)
         },
         //发送选择的内容的id过去
         async selectData() {
-            const res = await this.$http.get('rest/category')
+            const res = await this.$http.get('/category')
             this.select = res.data
-            console.log(this.select)
         }
     },
     created(){

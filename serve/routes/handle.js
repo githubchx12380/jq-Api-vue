@@ -32,7 +32,6 @@ exports.SelectId = (req,res) => {
 }
 
 exports.Insert = (req,res) => {
-    console.log(req.model)
     model.InsertData(req.model,req.body,function (err,data) {
         if(err){
             res.send(err)
@@ -44,7 +43,9 @@ exports.Insert = (req,res) => {
 
 exports.update = (req,res) => {
     let obj = req.body
+    
     let list = req.model
+   
     model.updateData(list,obj,data => { 
         res.send(data)
     })
@@ -73,10 +74,36 @@ exports.loginData = (req,res) => {
 
 
 
-exports.uploadfile = async (req,res) => {
-    const file = req.file
-    file.url = 'http://localhost:3000/upload/' + file.filename + ''
-    res.send(file)
+exports.pageData = async (req,res) => {
+    let obj = req.body
+    const count = await model.countData()
+    let countPage = Math.ceil(count / obj.pagesize)
+    model.detailPage(obj,(err,data) => {
+        if(err){
+            res.send(err)
+        }else{
+            res.send({count,countPage,data})
+        }
+    })
 }
 
+exports.seekDetails = (req,res) => {
+    let str = req.query.str
+    model.seekSqlDetail(str,(err,data) => {
+        if(err){
+            res.send(err)
+        }else{
+            res.send(data)
+        }
+    })
+}
 
+exports.contribute = (req,res) => {
+    model.modelContribute((err,data) => {
+        if(err){
+            res.send(err)
+        }else{
+            res.send(data)
+        }
+    })
+}

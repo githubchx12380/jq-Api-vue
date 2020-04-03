@@ -1,7 +1,6 @@
 <template>
   <div style="width:98%">
     <h2 style="text-align:center">{{id ? '编辑' : '添加'}}分类</h2>
-
     <el-form @submit.native.prevent="save" label-width="70px">
         <el-form-item label="所属分类">
            <el-select v-model="model._id" placeholder="请选择">
@@ -16,16 +15,16 @@
         <el-form-item label="文章标题">
             <el-input v-model="model.name"></el-input>
         </el-form-item>
-        <el-form-item label="富文本">
+        <el-form-item label="文章内容">
            <vue-editor  useCustomImageHandler @image-added="handleImageAdded" v-model="model.content"> </vue-editor>
         </el-form-item>
-        <el-form-item label="封面内容">
+        <el-form-item label="封面内容" v-if="model.cont" >
             <el-input type="textarea" v-model="model.cont"></el-input>
         </el-form-item>
         <el-form-item label="发布时间">
             <el-input v-model="model.date"></el-input>
         </el-form-item>
-        <el-form-item label="下载地址">
+        <el-form-item label="下载地址"  v-if="model.url">
             <el-input v-model="model.url"></el-input>
         </el-form-item>
         <el-form-item label="封面图片">

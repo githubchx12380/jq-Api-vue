@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import home from '../views/Home.vue'
-import category from '../components/category.vue'
-import addcategory from '../components/addcategory.vue'
-import detail from '../components/detail.vue'
-import adddetail from '../components/adddetail.vue'
-import user from '../components/user.vue'
-import adduser from '../components/adduser.vue'
-import login from '../components/login.vue'
+import category from '../components/adminMsg/category.vue'
+import addcategory from '../components/adminMsg/addcategory.vue'
+const detail = () => import('../components/adminMsg/detail.vue')
+import adddetail from '../components/adminMsg/adddetail.vue'
+import user from '../components/adminMsg/user.vue'
+import adduser from '../components/adminMsg/adduser.vue'
+import login from '../components/adminMsg/login.vue'
+const contribute = () => import('../components/web/contribute')
+import webuser from '../components/web/webuser.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -26,10 +28,12 @@ const routes = [
       {path:'/detail',component:detail},
       {path:'/adddetail',component:adddetail},
       {path:'/adddetail/:id',component:adddetail,props:true},
+      {path:'/contribute',component:contribute},
 
       {path:'/user',component:user},
       {path:'/adduser',component:adduser},
-      {path:'/adduser/:id',component:adduser,props:true}
+      {path:'/adduser/:id',component:adduser,props:true},
+      {path:'/webuser',component:webuser},
     ]
   },
   {

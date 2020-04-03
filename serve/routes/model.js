@@ -11,7 +11,7 @@ const connetion = mysql.createConnection({
     database:'project'
 })
 
-//分类表只有一个,sql写死
+//分类表
 exports.categoryGets = callback => {
     let sql = `SELECT * FROM category`
     connetion.query(sql,(err,result) => {
@@ -23,16 +23,9 @@ exports.categoryGets = callback => {
     })
 }
 
-//查询所有,带parent拿到关联数据,无parent拿到无关联数据
+//查询所有
 exports.SelectData = (list,callback) => {
-    let str = list
-    str = str.replace('parent','')  //所有关联数据请求后面带上parent即可
-
-    if(list.indexOf('parent') != -1){  
-        var sql = `SELECT * FROM category,${str} WHERE category._id=${str}._id order by date desc`
-    }else{
-        var sql = `SELECT * FROM ${list} `
-    }
+    var sql = `SELECT * FROM ${list} `
     connetion.query(sql,(err,result) => {
         if(err){
           callback({code:302,message:'查询失败'})
@@ -67,7 +60,7 @@ exports.InsertData = (list,obj,callback) => {
             username:obj.username,
             password:hash
         }
-        console.log(obj);
+
     }
     let sql = 'INSERT into '+ list +' set ?'
     connetion.query(sql,obj,(err,result) => {
@@ -132,4 +125,59 @@ exports.loginverify = (req,obj,callback) => {
     })
 }
 
+//分页接口
+exports.detailPage = (obj,callback) => {
+    let sql = `SELECT * FROM category,detail WHERE category._id = detail._id ORDER BY DATE DESC LIMIT ${(obj.page - 1) * obj.pagesize},${obj.pagesize}`
+    connetion.query(sql,(err,result) => {
+        if(err){
+            callback({code:302,msg:'查询失败'})
+        }else{
+            callback(null,result)
+        }
+    })
+}
 
+//页数查询
+exports.countData = (callback) => {
+   return new Promise(resolve => {
+    let sql = `select count(*) count from detail`
+    connetion.query(sql,(err,result) => {
+        if(err){
+            resolve({code:302,msg:'查询失败'})
+        }else{
+            resolve(result[0].count)
+        }
+    })
+   })
+}
+
+
+//模糊搜索
+exports.seekSqlDetail = (str,callback) => {
+    let sql = `select * from detail,category where category._id = detail._id `
+    if(str.indexOf('in:') != -1){
+        str = str.replace('in:','')
+        sql += ` and detail.id = ${str}`
+    }else{
+        sql += ` and name like '%${str}%'`
+    }
+    connetion.query(sql,(err,result) => {
+        if(err){
+            callback({code:302,msg:'查询失败'})
+        }else{
+            callback(null,result)
+        }
+    })
+}
+
+//话题
+exports.modelContribute = (callback) => {
+    let sql = `select * from webuser,userdetail where webuser.id = userdetail.webuser_id order by date desc`
+    connetion.query(sql,(err,result) => {
+        if(err){
+            callback({code:302,msg:'查询失败'})
+        }else{
+            callback(null,result)
+        }
+    })
+}
